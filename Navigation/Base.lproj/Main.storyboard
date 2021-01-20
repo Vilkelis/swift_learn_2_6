@@ -38,14 +38,14 @@
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits"/>
                                         <connections>
-                                            <action selector="statusTextFieldChanged:" destination="Ca1-kw-dKJ" eventType="editingChanged" id="FKg-vP-8jC"/>
+                                            <action selector="statusTextFieldChanged:" destination="piQ-NF-Msq" eventType="editingChanged" id="JHy-tk-Ldx"/>
                                         </connections>
                                     </textField>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="am2-2I-Jqh">
                                         <rect key="frame" x="16" y="162" width="382" height="30"/>
                                         <state key="normal" title="Button"/>
                                         <connections>
-                                            <action selector="setStatusButtonTouch:" destination="Ca1-kw-dKJ" eventType="touchUpInside" id="Y03-Gr-nPq"/>
+                                            <action selector="setStatusButtonTouch:" destination="piQ-NF-Msq" eventType="touchUpInside" id="SXZ-Y6-oUy"/>
                                         </connections>
                                     </button>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Jls-dx-KCP">
@@ -76,6 +76,13 @@
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="string" keyPath="statusText" value="Waiting for a status...."/>
                                 </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <outlet property="avatarImageView" destination="h1t-Iw-Jku" id="BEx-H5-EXw"/>
+                                    <outlet property="fullNameLabel" destination="Jls-dx-KCP" id="3U2-MF-Gmh"/>
+                                    <outlet property="setStatusButton" destination="am2-2I-Jqh" id="uLu-Ay-YH5"/>
+                                    <outlet property="statusLabel" destination="WNu-gk-VCv" id="aEx-ip-6yH"/>
+                                    <outlet property="statusTextField" destination="XrF-6o-ixC" id="NXg-Js-zjd"/>
+                                </connections>
                             </view>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="FCL-IZ-fe8"/>
@@ -87,14 +94,6 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Profile" id="TPi-FS-zh0"/>
-                    <connections>
-                        <outlet property="avatarImageView" destination="h1t-Iw-Jku" id="MA9-5X-iXk"/>
-                        <outlet property="fullNameLabel" destination="Jls-dx-KCP" id="zGW-83-up6"/>
-                        <outlet property="profileHeaderView" destination="piQ-NF-Msq" id="l3n-4g-Exp"/>
-                        <outlet property="setStatusButton" destination="am2-2I-Jqh" id="YT5-qa-89G"/>
-                        <outlet property="statusLabel" destination="WNu-gk-VCv" id="e91-LN-wg3"/>
-                        <outlet property="statusTextField" destination="XrF-6o-ixC" id="FOb-zM-fD5"/>
-                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ZwS-K6-ZGq" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
