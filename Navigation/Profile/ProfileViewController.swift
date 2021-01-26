@@ -10,36 +10,78 @@ import UIKit
 
 class ProfileViewController: UIViewController {
     
-    let testButton: UIButton = {
-        let button = UIButton()
-        button.setTitle("Test Button", for: .normal)
-        button.backgroundColor = .systemPink
-        button.frame = CGRect(x: 0, y: 0, width: 200, height: 20)
-        
-        return button
+    private lazy var tableView: UITableView = {
+        let tableView = UITableView(frame: .zero, style: .grouped)
+        tableView.backgroundColor = .white
+        tableView.translatesAutoresizingMaskIntoConstraints = false
+        tableView.dataSource = self
+        tableView.delegate = self
+        tableView.register(PostTableViewCell.self, forCellReuseIdentifier: String(describing: PostTableViewCell.self))
+        tableView.register(PostTableHeaderView.self, forHeaderFooterViewReuseIdentifier: String(describing: PostTableHeaderView.self))
+        return tableView
     }()
- 
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .lightGray
-        
-        self.view.addSubview(testButton)
-        testButton.translatesAutoresizingMaskIntoConstraints = false
-        NSLayoutConstraint.activate([
-            testButton.bottomAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.bottomAnchor),
-            testButton.leadingAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.leadingAnchor),
-            testButton.trailingAnchor.constraint(equalTo: self.view.trailingAnchor)
-        ])
+        title = "Posts"
+        setupViews()
     }
     
-    /*
-     // MARK: - Navigation
-     
-     // In a storyboard-based application, you will often want to do a little preparation before navigation
-     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-     // Get the new view controller using segue.destination.
-     // Pass the selected object to the new view controller.
-     }
-     */
-    
+    func setupViews() {
+        view.addSubview(tableView)
+        
+        let constraints = [
+            tableView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
+            tableView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
+            tableView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor),
+            tableView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor)
+        ]
+        NSLayoutConstraint.activate(constraints)
+    }
 }
+
+// MARK: - UITableViewDataSource
+extension ProfileViewController: UITableViewDataSource {
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return Storage.tableModel.count
+    }
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return Storage.tableModel[section].posts.count
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell: PostTableViewCell = tableView.dequeueReusableCell(
+            withIdentifier: String(describing: PostTableViewCell.self),
+            for: indexPath) as! PostTableViewCell
+        
+        cell.post = Storage.tableModel[indexPath.section].posts[indexPath.row]
+    
+        return cell
+    }
+    
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        guard section == 0 else {return nil}
+        
+        let headerView = tableView.dequeueReusableHeaderFooterView(withIdentifier: String(describing: PostTableHeaderView.self)) as! PostTableHeaderView
+        return headerView
+    }
+    
+    func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
+        return nil
+    }
+}
+
+// MARK: - UITableViewDelegate
+extension ProfileViewController: UITableViewDelegate {
+ 
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return UITableView.automaticDimension
+    }
+
+    func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
+        return .zero
+    }
+}
+
+

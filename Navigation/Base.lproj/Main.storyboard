@@ -16,82 +16,8 @@
                     <view key="view" contentMode="scaleToFill" id="z6I-Co-0n3">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="piQ-NF-Msq" customClass="ProfileHeaderView" customModule="Navigation" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="44" width="414" height="220"/>
-                                <subviews>
-                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="h1t-Iw-Jku">
-                                        <rect key="frame" x="16" y="16" width="100" height="100"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="100" id="RsD-ZR-FD6"/>
-                                            <constraint firstAttribute="width" constant="100" id="gYX-Xu-QtH"/>
-                                        </constraints>
-                                    </imageView>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WNu-gk-VCv">
-                                        <rect key="frame" x="132" y="67" width="266" height="21"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                        <nil key="textColor"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="XrF-6o-ixC">
-                                        <rect key="frame" x="132" y="112" width="266" height="34"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                        <textInputTraits key="textInputTraits"/>
-                                        <connections>
-                                            <action selector="statusTextFieldChanged:" destination="piQ-NF-Msq" eventType="editingChanged" id="JHy-tk-Ldx"/>
-                                        </connections>
-                                    </textField>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="am2-2I-Jqh">
-                                        <rect key="frame" x="16" y="162" width="382" height="30"/>
-                                        <state key="normal" title="Button"/>
-                                        <connections>
-                                            <action selector="setStatusButtonTouch:" destination="piQ-NF-Msq" eventType="touchUpInside" id="SXZ-Y6-oUy"/>
-                                        </connections>
-                                    </button>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Jls-dx-KCP">
-                                        <rect key="frame" x="132" y="27" width="266" height="21"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                        <nil key="textColor"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                </subviews>
-                                <viewLayoutGuide key="safeArea" id="yfw-wb-srX"/>
-                                <constraints>
-                                    <constraint firstItem="XrF-6o-ixC" firstAttribute="top" secondItem="WNu-gk-VCv" secondAttribute="bottom" constant="24" id="1Ya-LF-Gfe"/>
-                                    <constraint firstItem="WNu-gk-VCv" firstAttribute="leading" secondItem="h1t-Iw-Jku" secondAttribute="trailing" constant="16" id="6KP-96-kGK"/>
-                                    <constraint firstItem="yfw-wb-srX" firstAttribute="trailing" secondItem="Jls-dx-KCP" secondAttribute="trailing" constant="16" id="6sI-Ia-yPK"/>
-                                    <constraint firstItem="Jls-dx-KCP" firstAttribute="top" secondItem="yfw-wb-srX" secondAttribute="top" constant="27" id="Kma-F5-Bgk"/>
-                                    <constraint firstItem="Jls-dx-KCP" firstAttribute="leading" secondItem="h1t-Iw-Jku" secondAttribute="trailing" constant="16" id="Xmu-Rh-h3c"/>
-                                    <constraint firstItem="yfw-wb-srX" firstAttribute="trailing" secondItem="WNu-gk-VCv" secondAttribute="trailing" constant="16" id="Ybt-1j-3Qm"/>
-                                    <constraint firstItem="WNu-gk-VCv" firstAttribute="bottom" secondItem="h1t-Iw-Jku" secondAttribute="bottom" constant="-28" id="ekM-B0-oDA"/>
-                                    <constraint firstItem="h1t-Iw-Jku" firstAttribute="leading" secondItem="yfw-wb-srX" secondAttribute="leading" constant="16" id="enj-c2-yZH"/>
-                                    <constraint firstAttribute="height" constant="220" id="gjM-uN-mXM"/>
-                                    <constraint firstItem="h1t-Iw-Jku" firstAttribute="top" secondItem="yfw-wb-srX" secondAttribute="top" constant="16" id="iZn-gb-TCm"/>
-                                    <constraint firstItem="am2-2I-Jqh" firstAttribute="top" secondItem="XrF-6o-ixC" secondAttribute="bottom" constant="16" id="ju6-zW-Taj"/>
-                                    <constraint firstItem="am2-2I-Jqh" firstAttribute="trailing" secondItem="yfw-wb-srX" secondAttribute="trailing" constant="-16" id="r9o-jd-0PM"/>
-                                    <constraint firstItem="XrF-6o-ixC" firstAttribute="leading" secondItem="h1t-Iw-Jku" secondAttribute="trailing" constant="16" id="sIf-gM-Cfs"/>
-                                    <constraint firstItem="am2-2I-Jqh" firstAttribute="leading" secondItem="yfw-wb-srX" secondAttribute="leading" constant="16" id="wgI-pL-xL6"/>
-                                    <constraint firstItem="XrF-6o-ixC" firstAttribute="trailing" secondItem="yfw-wb-srX" secondAttribute="trailing" constant="-16" id="x5q-RV-3C6"/>
-                                </constraints>
-                                <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="string" keyPath="statusText" value="Waiting for a status...."/>
-                                </userDefinedRuntimeAttributes>
-                                <connections>
-                                    <outlet property="avatarImageView" destination="h1t-Iw-Jku" id="BEx-H5-EXw"/>
-                                    <outlet property="fullNameLabel" destination="Jls-dx-KCP" id="3U2-MF-Gmh"/>
-                                    <outlet property="setStatusButton" destination="am2-2I-Jqh" id="uLu-Ay-YH5"/>
-                                    <outlet property="statusLabel" destination="WNu-gk-VCv" id="aEx-ip-6yH"/>
-                                    <outlet property="statusTextField" destination="XrF-6o-ixC" id="NXg-Js-zjd"/>
-                                </connections>
-                            </view>
-                        </subviews>
                         <viewLayoutGuide key="safeArea" id="FCL-IZ-fe8"/>
                         <color key="backgroundColor" systemColor="systemTealColor"/>
-                        <constraints>
-                            <constraint firstItem="piQ-NF-Msq" firstAttribute="trailing" secondItem="FCL-IZ-fe8" secondAttribute="trailing" id="7du-eg-aEe"/>
-                            <constraint firstItem="piQ-NF-Msq" firstAttribute="leading" secondItem="FCL-IZ-fe8" secondAttribute="leading" id="OEW-Ex-e0e"/>
-                            <constraint firstItem="piQ-NF-Msq" firstAttribute="top" secondItem="FCL-IZ-fe8" secondAttribute="top" id="wjb-KX-GbQ"/>
-                        </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Profile" id="TPi-FS-zh0"/>
                 </viewController>

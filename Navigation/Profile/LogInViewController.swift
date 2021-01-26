@@ -179,6 +179,7 @@ class LogInViewController: UIViewController {
     
 }
 
+// MARK: - Extensions
 extension UIView {
     
     /// Method adds shadow and corner radius for top of view by default.
