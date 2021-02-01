@@ -16,6 +16,8 @@ class ProfileViewController: UIViewController {
         tableView.translatesAutoresizingMaskIntoConstraints = false
         tableView.dataSource = self
         tableView.delegate = self
+        tableView.backgroundColor = .systemGray6
+        tableView.register(PhotosTableViewCell.self, forCellReuseIdentifier: String(describing: PhotosTableViewCell.self))
         tableView.register(PostTableViewCell.self, forCellReuseIdentifier: String(describing: PostTableViewCell.self))
         tableView.register(PostTableHeaderView.self, forHeaderFooterViewReuseIdentifier: String(describing: PostTableHeaderView.self))
         return tableView
@@ -23,7 +25,6 @@ class ProfileViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        title = "Posts"
         setupViews()
     }
     
@@ -38,49 +39,82 @@ class ProfileViewController: UIViewController {
         ]
         NSLayoutConstraint.activate(constraints)
     }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        title = "Posts"
+    }
 }
 
 // MARK: - UITableViewDataSource
 extension ProfileViewController: UITableViewDataSource {
     func numberOfSections(in tableView: UITableView) -> Int {
-        return Storage.tableModel.count
+        return Storage.tableModel.count + 1
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return Storage.tableModel[section].posts.count
+        if section == 0 {
+            return 1
+        } else {
+            return Storage.tableModel[section - 1].posts.count
+        }
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell: PostTableViewCell = tableView.dequeueReusableCell(
-            withIdentifier: String(describing: PostTableViewCell.self),
-            for: indexPath) as! PostTableViewCell
-        
-        cell.post = Storage.tableModel[indexPath.section].posts[indexPath.row]
-    
-        return cell
+        if indexPath.section == 0 {
+            let cell: PhotosTableViewCell = tableView.dequeueReusableCell(
+                withIdentifier: String(describing: PhotosTableViewCell.self),
+                for: indexPath) as! PhotosTableViewCell
+            cell.toCatalogButton.addTarget(self, action: #selector(toCatalogButtonTouch), for: .touchUpInside)
+            cell.catalog = Storage.catalogModel
+            return cell
+        }  else {
+            let cell: PostTableViewCell = tableView.dequeueReusableCell(
+                withIdentifier: String(describing: PostTableViewCell.self),
+                for: indexPath) as! PostTableViewCell
+            
+            cell.post = Storage.tableModel[indexPath.section - 1].posts[indexPath.row]
+            
+            return cell
+        }
     }
     
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        guard section == 0 else {return nil}
-        
-        let headerView = tableView.dequeueReusableHeaderFooterView(withIdentifier: String(describing: PostTableHeaderView.self)) as! PostTableHeaderView
-        return headerView
+        if section == 0 {
+            let headerView = tableView.dequeueReusableHeaderFooterView(withIdentifier: String(describing: PostTableHeaderView.self)) as! PostTableHeaderView
+            return headerView
+        } else {
+            return nil
+        }
     }
     
     func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
         return nil
     }
+    
+    @objc private func toCatalogButtonTouch() {
+        self.title = "Back"
+        navigationController?.pushViewController(PhotosCollectionViewController(), animated: true)
+    }
 }
 
 // MARK: - UITableViewDelegate
 extension ProfileViewController: UITableViewDelegate {
- 
+    
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return UITableView.automaticDimension
+        if section == 0 {
+            return UITableView.automaticDimension
+        } else {
+            return  .zero
+        }
     }
-
+    
     func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
-        return .zero
+        if section == 0 {
+            return 8
+        } else {
+            return .zero
+        }
     }
 }
 

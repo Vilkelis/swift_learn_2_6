@@ -22,7 +22,19 @@ struct PostSection {
     var footer: String? = nil
 }
 
+struct catalogImage {
+    var image: String?
+}
+
 struct Storage {
+    static let catalogModel: [catalogImage] = {
+        var array: [catalogImage] = []
+        for i in 0...17 {
+            array.append(catalogImage(image: "Image-\(i)"))
+        }
+        return array
+    }()
+    
     static let tableModel = [
         PostSection(
             posts: [
