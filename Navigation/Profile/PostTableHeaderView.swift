@@ -10,7 +10,7 @@ import UIKit
 
 class PostTableHeaderView: UITableViewHeaderFooterView {
     
-    private let profileHeaderView: ProfileHeaderView = {
+    let profileHeaderView: ProfileHeaderView = {
         let view = ProfileHeaderView()
         view.translatesAutoresizingMaskIntoConstraints = false
         return view

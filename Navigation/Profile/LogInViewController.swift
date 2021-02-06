@@ -96,8 +96,6 @@ class LogInViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.navigationController?.navigationBar.isHidden = true
-        
         view.addSubview(scrollView)
         scrollView.addSubview(containerView)
         [logoImage, loginTextField, passwordTextField, loginButton].forEach {
@@ -151,6 +149,7 @@ class LogInViewController: UIViewController {
     /// Keyboard observers
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        self.navigationController?.navigationBar.isHidden = true
         
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: UIResponder.keyboardWillShowNotification, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name: UIResponder.keyboardWillHideNotification, object: nil)
