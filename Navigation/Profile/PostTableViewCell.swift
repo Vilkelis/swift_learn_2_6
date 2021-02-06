@@ -79,6 +79,8 @@ class PostTableViewCell: UITableViewCell {
             contentView.addSubview($0)
         }
         
+        authorLabel.setContentHuggingPriority(.defaultLow - 1, for: .vertical)
+ 
         let constraints = [
             authorLabel.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 16),
             authorLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 16),

@@ -8,15 +8,27 @@
 
 import UIKit
 
+protocol ImageViewZoomableDelegate {
+    func performZoomInImageView(_ imageView: UIImageView)
+}
+
 class ProfileHeaderView: UIView {
     var statusText: String = "Waiting for something..."
     
-    let image: UIImageView = {
+    private lazy var imageAnimator: UIViewPropertyAnimator = {
+        return UIViewPropertyAnimator(duration: 0.5, curve: .easeInOut)
+    }()
+        
+    var delegate: ImageViewZoomableDelegate?
+        
+    private lazy var  image: UIImageView = {
         let image = UIImageView()
         image.layer.borderWidth = 3
         image.layer.borderColor = UIColor.white.cgColor
         image.clipsToBounds = true
         image.translatesAutoresizingMaskIntoConstraints = false
+        image.isUserInteractionEnabled =  true
+        image.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(handleTapOnImage)))
         return image
     }()
     
@@ -91,7 +103,7 @@ class ProfileHeaderView: UIView {
     }
     
     func setupSubviews() {
-        [image, titleLabel, statusLabel, statusField, showStatusButton].forEach {
+        [titleLabel, statusLabel, statusField, showStatusButton, image].forEach {
             self.addSubview($0)
         }
         
@@ -132,4 +144,8 @@ class ProfileHeaderView: UIView {
         statusText = textField.text ?? ""
     }
     
+    //MARK: - Tap On Image
+    @objc func handleTapOnImage() {
+        delegate?.performZoomInImageView(image)
+    }
 }
